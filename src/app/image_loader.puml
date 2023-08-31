@@ -1,0 +1,34 @@
+@startuml
+class app.viewers.PngViewer {
++ void viewJpg(String)
++ void viewPng(String)
+}
+class app.Main {
++ {static} void main(String[])
+}
+class app.viewers.JpgViewer {
++ void viewJpg(String)
++ void viewPng(String)
+}
+class app.adapters.ImageAdapter {
+~ AdvancedImageViewer advancedImageViewer
++ void view(String,String)
+}
+interface app.viewers.ImageViewer {
+~ void view(String,String)
+}
+interface app.viewers.AdvancedImageViewer {
+~ void viewJpg(String)
+~ void viewPng(String)
+}
+class app.viewers.PdfViewer {
+~ ImageAdapter imageAdapter
++ void view(String,String)
+}
+
+
+app.viewers.AdvancedImageViewer <|.. app.viewers.PngViewer
+app.viewers.AdvancedImageViewer <|.. app.viewers.JpgViewer
+app.viewers.ImageViewer <|.. app.adapters.ImageAdapter
+app.viewers.ImageViewer <|.. app.viewers.PdfViewer
+@enduml
